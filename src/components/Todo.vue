@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { X } from "lucide-vue-next";
 const { text, done, removeTodo, setToDone } = defineProps<{
   id: number;
   text: string;
@@ -9,16 +10,21 @@ const { text, done, removeTodo, setToDone } = defineProps<{
 </script>
 
 <template>
-  <li>
-    <input type="checkbox" :checked="done" @change="setToDone(done, id)" />
-    <span :class="{ 'line-through': done }">
+  <li class="flex items-center h-8 my-2">
+    <input
+      type="checkbox"
+      :checked="done"
+      class="mx-1"
+      @change="setToDone(done, id)"
+    />
+    <span class="inline-block align-bottom" :class="{ 'line-through': done }">
       {{ text }}
     </span>
     <button
-      class="bg-gray-400 p-1 mx-1 w-6 h-6 flex justify-center align-middle"
+      class="bg-gray-400 p-1 mx-1 flex justify-center items-center rounded"
       @click="removeTodo(id)"
     >
-      <span>&times;</span>
+      <X />
     </button>
   </li>
 </template>
