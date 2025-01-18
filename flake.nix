@@ -6,20 +6,22 @@
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = {
-    nixpkgs,
-    flake-utils,
-    ...
-  }:
-    flake-utils.lib.eachDefaultSystem (system: let
+  outputs =
+    { nixpkgs
+    , flake-utils
+    , ...
+    }:
+    flake-utils.lib.eachDefaultSystem (system:
+    let
       pkgs = import nixpkgs {
         inherit system;
       };
-      fixedNode = pkgs.nodejs_20;
+      fixedNode = pkgs.nodejs_22;
       fixedNodePackages = pkgs.nodePackages.override {
         nodejs = fixedNode;
       };
-    in {
+    in
+    {
       devShell = pkgs.mkShell {
         buildInputs = [
           fixedNode
@@ -31,4 +33,3 @@
       };
     });
 }
-
