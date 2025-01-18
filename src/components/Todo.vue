@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { defineProps } from "vue";
 const { text, done, removeTodo, setToDone } = defineProps<{
   id: number;
   text: string;
@@ -15,7 +14,12 @@ const { text, done, removeTodo, setToDone } = defineProps<{
     <span :class="{ 'line-through': done }">
       {{ text }}
     </span>
-    <button @click="removeTodo(id)">X</button>
+    <button
+      class="bg-gray-400 p-1 mx-1 w-6 h-6 flex justify-center align-middle"
+      @click="removeTodo(id)"
+    >
+      <span>&times;</span>
+    </button>
   </li>
 </template>
 
