@@ -20,6 +20,7 @@
       fixedNodePackages = pkgs.nodePackages.override {
         nodejs = fixedNode;
       };
+      vuejs = pkgs.vue-language-server;
     in
     {
       devShell = pkgs.mkShell {
@@ -29,6 +30,7 @@
           fixedNodePackages.yarn
           fixedNodePackages.typescript
           fixedNodePackages.typescript-language-server
+          vuejs
         ];
       };
     });
